@@ -4,21 +4,7 @@ This is a full-stack CRUD Employee Management System built using Laravel (for th
 
 ---
 
-## Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Backend Setup (Laravel)](#backend-setup-laravel)
-- [Frontend Setup (Angular)](#frontend-setup-angular)
-- [API Endpoints](#api-endpoints)
-- [Environment Configuration](#environment-configuration)
-- [How It Works](#how-it-works)
-- [License](#license)
-
----
-
-## Features
+### Features
 
 - Add new employees
 - Edit employee data
