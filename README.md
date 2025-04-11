@@ -119,21 +119,3 @@ private apiUrl = 'http://127.0.0.1:8000/api/employees';
 All responses include a message and status field sent from Laravel and displayed in Angular.
 
 
-
-### License
----
-
-Let me know if you also want:
-
-- GitHub badges (build, version, license, etc.)
-- Swagger API docs
-- Deployment section (Docker, Vercel, etc.)
-- Screenshots with markdown embed
-
-Want to level it up even more? Say the word 😎
-
-
-
-
-
-
