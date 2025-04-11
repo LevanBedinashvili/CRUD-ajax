@@ -1,4 +1,4 @@
-# Employee Management System (Laravel API + Angular 19)
+# Employee CRUD (Laravel API + Angular 19)
 
 This is a full-stack CRUD Employee Management System built using Laravel (for the backend REST API) and Angular 19 (for the frontend UI). It allows users to add, edit, delete, and view employee records with real-time feedback and validations.
 
@@ -47,11 +47,15 @@ This is a full-stack CRUD Employee Management System built using Laravel (for th
 
 ---
 
-## Project Structure
-employee-crud/ ├── backend/ # Laravel API └── frontend/ # Angular 19 App
+### Project Structure
 
-
+├── CRUD-angular-laravel
+│   ├── backend
+│   └── frontend
+│   └── README.md
 ---
+
+
 
 ## Backend Setup (Laravel)
 
