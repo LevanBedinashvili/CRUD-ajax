@@ -25,7 +25,7 @@ This is a full-stack CRUD Employee Management System built using Laravel (for th
 - TypeScript + SCSS
 
 ### Backend
-- Laravel 10+
+- Laravel 12
 - PHP 8.1+
 - MySQL
 - Eloquent ORM
