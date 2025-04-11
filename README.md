@@ -47,16 +47,6 @@ This is a full-stack CRUD Employee Management System built using Laravel (for th
 
 ---
 
-### Project Structure
-
-├── CRUD-angular-laravel
-│   ├── backend
-│   └── frontend
-│   └── README.md
----
-
-
-
 ## Backend Setup (Laravel)
 
 ### Requirements
