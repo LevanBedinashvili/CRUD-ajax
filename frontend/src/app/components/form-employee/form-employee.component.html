@@ -1,16 +1,12 @@
-<!-- src/app/components/add-employee/add-employee.component.html -->
+<!-- src/app/components/form-employee/form-employee.component.html -->
 
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Add New Employee</mat-card-title>
+      <mat-card-title>{{ isUpdateMode ? 'Update Employee' : 'Add New Employee' }}</mat-card-title>
     </mat-card-header>
     
     <mat-card-content>
-
-      <div *ngIf="generalError" class="error-message">
-        <p>{{ generalError }}</p>
-      </div>
 
       <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
         <div class="form-row">

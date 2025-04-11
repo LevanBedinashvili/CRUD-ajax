@@ -18,20 +18,20 @@ class EmployeeController extends Controller
     public function index()
     {
         // get employees data
-        $employees = Employee::get();
+        $employees = Employee::orderBy('id', 'desc')->get();
 
         // check if there are any records, if not 404 error - employees not found
         if ($employees->isEmpty()) {
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Employees not found'
+                'message' => 'There are no records about employees.'
             ], 404); // 404 not found
         }
 
         // data to json with status and message
         return response()->json([
             'status' => 'success',
-            'message' => 'Employees retrieved successfully',
+            'message' => 'The record about employees has been successfully retreived.',
             'data' => EmployeeResource::collection($employees)
         ], 200); // 200 ok
     }
@@ -58,7 +58,7 @@ class EmployeeController extends Controller
         // json response with status and message that employee has successfully added
         return response()->json([
             'status' => 'success',
-            'message' => 'Employee added successfully',
+            'message' => 'Employee has been added successfully.',
             'data' => new EmployeeResource($employee)
         ], 201); // 201 success post
     }
@@ -75,14 +75,14 @@ class EmployeeController extends Controller
         if (!$employee) {
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Employee not found'
+                'message' => 'There is no record about employee on this specific ID.'
             ], 404); // 404 not found
         }
 
         // if employee on that id exists
         return response()->json([
             'status' => 'success',
-            'message' => 'Employee retrieved successfully',
+            'message' => 'Information about employee have been successfully retrieved.',
             'data' => new EmployeeResource($employee)
         ], 200); // 200 ok
     }
@@ -110,7 +110,7 @@ class EmployeeController extends Controller
         // retrieve status and messsage with updated data
         return response()->json([
             'status' => 'success',
-            'message' => 'Employee updated successfully',
+            'message' => 'Information about employee has been updated successfully.',
             'data' => new EmployeeResource($employee)
         ], 200); // ok
 
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
         if (!$employee) {
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Employee not found'
+                'message' => 'There is no record about employee on this specific ID.'
             ], 404); // 404 not found
         }
 
@@ -139,7 +139,7 @@ class EmployeeController extends Controller
         // success response and message
         return response()->json([
             'status' => 'success',
-            'message' => 'Employee deleted successfully'
-        ], 204); // 204 for no content.
+            'message' => 'The information about this employee has been successfully deleted.'
+        ], 200); // 204 for no content.
     }
 }

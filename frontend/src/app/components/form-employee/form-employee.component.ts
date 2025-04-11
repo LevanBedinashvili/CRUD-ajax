@@ -1,6 +1,4 @@
-// src/app/components/add-employee/add-employee.component.ts
-
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,15 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-add-employee',
-  templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css'],
+  selector: 'app-form-employee',
+  templateUrl: './form-employee.component.html',
+  styleUrls: ['./form-employee.component.css'],
   standalone: true,
   imports: [
     CommonModule,
@@ -29,27 +27,51 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatSnackBarModule
   ]
 })
-export class AddEmployeeComponent implements OnInit {
+
+export class FormEmployeeComponent implements OnInit {
   employeeForm!: FormGroup;
   loading = false;
   submitted = false;
   serverErrors: Record<string, string[]> = {};
   generalError = '';
+  employeeId!: number;
+  isUpdateMode: boolean = false;  // Flag to track update mode
+
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: any
+
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.isUpdateMode = true;  
+      }
+    });
+
+
     this.employeeForm = this.fb.group({
       first_name: ['', [Validators.required, Validators.maxLength(255)]],
       last_name: ['', [Validators.required, Validators.maxLength(255)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      position: ['', [Validators.required, Validators.maxLength(255)]]
+      position: ['', [Validators.required]]
+    });
+
+    this.route.queryParams.subscribe((params: any) => {
+      if (isPlatformBrowser(this.platformId)) {
+        const empData = history.state?.data;
+        if (empData) {
+          this.employeeId = empData.id;
+          this.employeeForm.patchValue(empData);
+        }
+      }
     });
   }
 
@@ -59,15 +81,20 @@ export class AddEmployeeComponent implements OnInit {
       this.markAllTouched(this.employeeForm);
       return;
     }
-
+  
     this.loading = true;
-
-    this.employeeService.addEmployee(this.employeeForm.value).subscribe({
+  
+    const request = this.employeeId
+      ? this.employeeService.updateEmployee(this.employeeId, this.employeeForm.value)
+      : this.employeeService.addEmployee(this.employeeForm.value);
+  
+    request.subscribe({
       next: res => {
         this.loading = false;
-        this.submitted = true;
         this.snackBarMessage(res.message);
-        this.employeeForm.reset();
+        if (!this.employeeId) {
+          this.employeeForm.reset();
+        }
       },
       error: (error: HttpErrorResponse) => {
         this.loading = false;
