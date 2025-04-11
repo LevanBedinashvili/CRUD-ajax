@@ -68,7 +68,6 @@ export class EmployeeListComponent implements OnInit {
           }
         },
         error: (error) => {
-          // If Laravel sends a JSON error message
           const message = error?.error?.message || 'An unexpected error occurred';
           this.snackBar.open(message, 'Close', { duration: 3000,  horizontalPosition: 'start', verticalPosition: 'bottom'});
           console.error(error);
