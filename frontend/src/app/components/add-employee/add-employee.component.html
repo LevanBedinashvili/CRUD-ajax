@@ -1,0 +1,110 @@
+<!-- src/app/components/add-employee/add-employee.component.html -->
+
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add New Employee</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+
+      <div *ngIf="generalError" class="error-message">
+        <p>{{ generalError }}</p>
+      </div>
+
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name" placeholder="Enter first name">
+            <mat-error *ngIf="hasError('first_name', 'required')">
+              First name is required
+            </mat-error>
+            <mat-error *ngIf="hasError('first_name', 'maxlength')">
+              First name must not exceed 255 characters
+            </mat-error>
+            <mat-error *ngIf="hasServerError('first_name')">
+              <span *ngFor="let error of getServerErrors('first_name')">{{ error }}</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name" placeholder="Enter last name">
+            <mat-error *ngIf="hasError('last_name', 'required')">
+              Last name is required
+            </mat-error>
+            <mat-error *ngIf="hasError('last_name', 'maxlength')">
+              Last name must not exceed 255 characters
+            </mat-error>
+            <mat-error *ngIf="hasServerError('last_name')">
+              <span *ngFor="let error of getServerErrors('last_name')">{{ error }}</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter email address" type="email">
+            <mat-error *ngIf="hasError('email', 'required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="hasError('email', 'email')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="hasServerError('email')">
+              <span *ngFor="let error of getServerErrors('email')">{{ error }}</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" placeholder="Enter phone number">
+            <mat-error *ngIf="hasError('phone', 'required')">
+              Phone number is required
+            </mat-error>
+            <mat-error *ngIf="hasError('phone', 'pattern')">
+              Phone must contain only numbers
+            </mat-error>
+            <mat-error *ngIf="hasServerError('phone')">
+              <span *ngFor="let error of getServerErrors('phone')">{{ error }}</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Position</mat-label>
+            <input matInput formControlName="position" placeholder="Enter job position">
+            <mat-error *ngIf="hasError('position', 'required')">
+              Position is required
+            </mat-error>
+            <mat-error *ngIf="hasError('position', 'maxlength')">
+              Position must not exceed 255 characters
+            </mat-error>
+            <mat-error *ngIf="hasServerError('position')">
+              <span *ngFor="let error of getServerErrors('position')">{{ error }}</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" (click)="cancel()">Reset</button>
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            [disabled]="employeeForm.invalid || loading">
+            <span *ngIf="!loading">Save</span>
+            <mat-spinner *ngIf="loading" diameter="24"></mat-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

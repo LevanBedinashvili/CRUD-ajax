@@ -1,0 +1,82 @@
+/* src/app/components/add-employee/add-employee.component.scss */
+
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  mat-card {
+    padding: 1.5rem;
+  }
+  
+  mat-card-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row {
+    margin-bottom: 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  button[type="submit"] {
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  mat-spinner {
+    margin: 0 auto;
+  }
+  
+  .success-message {
+    background-color: #e6f4ea;
+    color: #0d652d;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #0d652d;
+  }
+  
+  .error-message {
+    background-color: #fdeded;
+    color: #d93025;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #d93025;
+  }
+  
+  /* Custom styling for error snackbar - add to styles.scss */
+  ::ng-deep .error-snackbar {
+    background-color: #d93025;
+    color: white;
+  }
+
+  .error-snackbar {
+    background-color: #d93025 !important;
+    color: white !important;
+  }
+  
+  .error-snackbar .mat-button {
+    color: white !important;
+  }
+  
+  /* Style for multiline snackbar */
+  .multiline-snackbar {
+    white-space: pre-line !important; /* This preserves the newlines */
+    line-height: 1.5 !important;
+    padding: 14px 16px !important;
+    max-width: 500px !important;
+  }
