@@ -100,9 +100,10 @@ ng serve
 - Frontend will run at: http://localhost:4200
 
 - Make sure the Angular service points to the Laravel API:
-- 
-serivces/employee.service.ts
+
+```
 private apiUrl = 'http://127.0.0.1:8000/api/employees';
+```
 
 
 ### API Endpoints
@@ -113,7 +114,7 @@ GET	              /api/employees	          List all employees
 GET	              /api/employees/{id}	      Get a single employee
 POST	            /api/employees	          Create new employee
 PUT	              /api/employees/{id}	      Update existing employee
-DELETE	          /api/employees/{id}	       Delete employee
+DELETE	          /api/employees/{id}	      Delete employee
 ```
 All responses include a message and status field sent from Laravel and displayed in Angular.
 
