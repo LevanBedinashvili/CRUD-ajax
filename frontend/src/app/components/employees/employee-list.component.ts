@@ -21,7 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 
-export class EmployeeListComponent implements OnInit {
+export default class EmployeeListComponent implements OnInit {
 
   employees: any[] = [];
   displayedColumns: string[] = ['id', 'Name', 'email', 'phone', 'position', 'actions', 'delete'];

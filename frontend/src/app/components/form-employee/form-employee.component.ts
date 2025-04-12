@@ -28,7 +28,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   ]
 })
 
-export class FormEmployeeComponent implements OnInit {
+export default class FormEmployeeComponent implements OnInit {
   employeeForm!: FormGroup;
   loading = false;
   submitted = false;

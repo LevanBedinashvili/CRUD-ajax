@@ -1,7 +1,6 @@
-import { bootstrapApplication, platformBrowser } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { FormEmployeeComponent } from './app/components/form-employee/form-employee.component';
 
 
 bootstrapApplication(AppComponent, appConfig)
