@@ -21,8 +21,8 @@ This is a full-stack CRUD Employee Management System built using Laravel (for th
 ### Frontend
 - Angular 19
 - Angular Material
-- RxJS & HTTPClient
-- TypeScript + SCSS
+- HTTPClient
+- TypeScript
 
 ### Backend
 - Laravel 12
